@@ -1,0 +1,120 @@
+[
+    {
+        "message": "full avg pooling num filt 50 no class weighting",
+        "other_data_loaders":{
+            "train": {
+                "class": "hdf5_data_loader.MultimodalBatchDataLoader",
+                "kwargs": {
+                    "batch_size": 300,
+                    "path_to_hdf5": "train_data.hdf5",
+                    "num_to_load_for_eval": 1000,
+                    "bundle_x_and_y_in_generator": True
+                }
+            }
+        },
+        "model_creator":{
+            "class": "flexible_keras.FlexibleKerasGraph",
+            "kwargs": {
+                "inputs_config": [
+                    {"name": "sequence",
+                     "input_shape": [1, 4, 200]} 
+                ],
+                "nodes_config": [
+                    {
+                        "name": "conv1",
+                        "input_name": "sequence", 
+                        "class": "keras.layers.convolutional.Convolution2D", 
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_row": 4,
+                            "nb_col": 11,
+                        }
+                    },
+                    {
+                        "name": "conv1_act",
+                        "input_name": "conv1", 
+                        "class": "keras.layers.core.Activation", 
+                        "kwargs": {"activation": "relu"}
+                    },
+                    {
+                        "name": "conv2",
+                        "input_name": "conv1_act", 
+                        "class": "keras.layers.convolutional.Convolution2D", 
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_row": 1,
+                            "nb_col": 11,
+                        }
+                    },
+                    {
+                        "name": "conv2_act",
+                        "input_name": "conv2", 
+                        "class": "keras.layers.core.Activation", 
+                        "kwargs": {"activation": "relu"}
+                    },
+                    {
+                        "name": "avg_pool",
+                        "input_name": "conv2_act", 
+                        "class": "keras.layers.convolutional.AveragePooling2D", 
+                        "kwargs": {"pool_size": [1,180], "strides": [1,1]}
+                    },
+                    {
+                        "name": "flatten",
+                        "input_name": "avg_pool", 
+                        "class": "keras.layers.core.Flatten", 
+                        "kwargs": {}
+                    },
+                    {
+                        "name": "dense1",
+                        "input_name": "flatten", 
+                        "class": "keras.layers.core.Dense", 
+                        "kwargs": {"output_dim": 5}
+                    },
+                    {
+                        "name": "dense1_act",
+                        "input_name": "dense1", 
+                        "class": "keras.layers.core.Activation", 
+                        "kwargs": {"activation": "relu"}
+                    },
+                    {
+                        "name": "output_preact",
+                        "input_name": "dense1_act", 
+                        "class": "keras.layers.core.Dense", 
+                        "kwargs": {"output_dim": 3}
+                    },
+                    {
+                        "name": "output_act",
+                        "input_name": "output_preact", 
+                        "class": "keras.layers.core.Activation", 
+                        "kwargs": {"activation": "sigmoid"}
+                    }
+                ],
+                "outputs_config": [
+                   {"name": "output",
+                    "input": "output_act"}
+                ],
+                "optimizer_config": {
+                    "class": "keras.optimizers.Adam",
+                    "kwargs": {"lr": 0.001}
+                },
+                "loss_dictionary": {
+                    "output": "binary_crossentropy",
+                }  
+            } 
+        },
+        "model_trainer":{
+            "class": "keras_model_trainer.KerasFitGeneratorModelTrainer",
+            "kwargs": {
+                "samples_per_epoch": 30000,
+                "stopping_criterion_config": {
+                    "class": "EarlyStopping" ,
+                    "kwargs": {
+                       "max_epochs": 500, 
+                       "epochs_to_wait": 10
+                    } 
+                },
+            }
+        },
+        "message": "Test model"
+    }
+]
