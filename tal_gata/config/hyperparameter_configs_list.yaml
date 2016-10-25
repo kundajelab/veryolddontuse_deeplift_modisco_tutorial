@@ -68,7 +68,7 @@
                         "name": "dense1",
                         "input_name": "flatten", 
                         "class": "keras.layers.core.Dense", 
-                        "kwargs": {"output_dim": 5}
+                        "kwargs": {"output_dim": 10}
                     },
                     {
                         "name": "dense1_act",
@@ -77,8 +77,14 @@
                         "kwargs": {"activation": "relu"}
                     },
                     {
-                        "name": "output_preact",
+                        "name": "dense1_dropout",
                         "input_name": "dense1_act", 
+                        "class": "keras.layers.core.Dropout", 
+                        "kwargs": {"p": 0.5}
+                    },
+                    {
+                        "name": "output_preact",
+                        "input_name": "dense1_dropout", 
                         "class": "keras.layers.core.Dense", 
                         "kwargs": {"output_dim": 3}
                     },

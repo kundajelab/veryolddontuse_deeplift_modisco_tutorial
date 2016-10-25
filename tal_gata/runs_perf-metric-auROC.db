@@ -1,56 +1,1195 @@
 {
     "metadata": {
-        "total_records": 6,
-        "best_valid_key_metric": 0.98870675092825966,
+        "total_records": 9,
+        "best_valid_key_metric": 0.9895063614600508,
         "best_saved_files_config": {
-            "weights_file": "model_files/record_6_model_kEIyl_modelWeights.h5",
-            "yaml_file": "model_files/record_6_model_kEIyl_modelYaml.yaml",
+            "weights_file": "model_files/record_7_model_9pOJw_modelWeights.h5",
             "directory": "model_files",
-            "prefix": "model_kEIyl"
+            "prefix": "model_9pOJw",
+            "yaml_file": "model_files/record_7_model_9pOJw_modelYaml.yaml"
         }
     },
     "records": [
         {
-            "record_number": 6,
+            "record_number": 7,
             "message": "Test model",
-            "best_valid_key_metric": 0.98870675092825966,
+            "best_valid_key_metric": 0.9895063614600508,
             "best_valid_perf_info": {
-                "epoch": 38,
-                "valid_key_metric": 0.98870675092825966,
-                "train_key_metric": 0.99727135455716942,
                 "valid_all_stats": {
                     "per_output_auROC": {
                         "output": [
-                            0.98699780981334384,
-                            0.98460778613450362,
-                            0.99451465683693174
+                            0.9874799777712399,
+                            0.9863583222361848,
+                            0.9946807843727276
                         ]
                     },
-                    "mean_auROC": 0.98870675092825966,
-                    "per_output_auPRC": {
-                        "output": [
-                            0.97230115517149063,
-                            0.98705654228667461,
-                            0.99497038133338678
-                        ]
-                    },
-                    "mean_auPRC": 0.98477602626385075,
+                    "mean_balanced_accuracy": 0.9527787078343981,
                     "per_output_balanced_accuracy": {
                         "output": [
-                            0.94611160145140727,
-                            0.94270120224318699,
+                            0.9493805367591776,
+                            0.9414727010146857,
+                            0.9674828857293312
+                        ]
+                    },
+                    "mean_auROC": 0.9895063614600508,
+                    "mean_auPRC": 0.984412717905374,
+                    "per_output_auPRC": {
+                        "output": [
+                            0.970888054096208,
+                            0.9869809852014358,
+                            0.995369114418478
+                        ]
+                    },
+                    "mean_unbalanced_accuracy": 0.9575,
+                    "per_output_unbalanced_accuracy": {
+                        "output": [
+                            0.9625,
+                            0.94125,
+                            0.96875
+                        ]
+                    }
+                },
+                "epoch": 24,
+                "valid_key_metric": 0.9895063614600508,
+                "train_key_metric": 0.9962757477264623
+            },
+            "training_metadata": {
+                "termination_condition": "normal",
+                "total_epochs_trained_for": 34
+            },
+            "other_data_loaders_info": {
+                "train": {
+                    "path_to_hdf5": "train_data.hdf5",
+                    "bundle_x_and_y_in_generator": true,
+                    "num_to_load_for_eval": 1000,
+                    "batch_size": 300
+                }
+            },
+            "model_trainer_info": {
+                "samples_per_epoch": 30000,
+                "stopping_criterion_config": {
+                    "class": "EarlyStopping",
+                    "kwargs": {
+                        "max_epochs": 500,
+                        "epochs_to_wait": 10
+                    }
+                },
+                "class_weight": null
+            },
+            "model_creator_info": {
+                "outputs_config": [
+                    {
+                        "input": "output_act",
+                        "name": "output"
+                    }
+                ],
+                "optimizer_config": {
+                    "class": "keras.optimizers.Adam",
+                    "kwargs": {
+                        "lr": 0.001
+                    }
+                },
+                "loss_dictionary": {
+                    "output": "binary_crossentropy"
+                },
+                "nodes_config": [
+                    {
+                        "input_name": "sequence",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv1",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 4
+                        }
+                    },
+                    {
+                        "input_name": "conv1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv1_act",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv2",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 1
+                        }
+                    },
+                    {
+                        "input_name": "conv2",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv2_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv2_act",
+                        "class": "keras.layers.convolutional.AveragePooling2D",
+                        "name": "avg_pool",
+                        "kwargs": {
+                            "strides": [
+                                1,
+                                1
+                            ],
+                            "pool_size": [
+                                1,
+                                180
+                            ]
+                        }
+                    },
+                    {
+                        "input_name": "avg_pool",
+                        "class": "keras.layers.core.Flatten",
+                        "name": "flatten",
+                        "kwargs": {}
+                    },
+                    {
+                        "input_name": "flatten",
+                        "class": "keras.layers.core.Dense",
+                        "name": "dense1",
+                        "kwargs": {
+                            "output_dim": 50
+                        }
+                    },
+                    {
+                        "input_name": "dense1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "dense1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "dense1_act",
+                        "class": "keras.layers.core.Dropout",
+                        "name": "dense1_dropout",
+                        "kwargs": {
+                            "p": 0.5
+                        }
+                    },
+                    {
+                        "input_name": "dense1_dropout",
+                        "class": "keras.layers.core.Dense",
+                        "name": "output_preact",
+                        "kwargs": {
+                            "output_dim": 3
+                        }
+                    },
+                    {
+                        "input_name": "output_preact",
+                        "class": "keras.layers.core.Activation",
+                        "name": "output_act",
+                        "kwargs": {
+                            "activation": "sigmoid"
+                        }
+                    }
+                ],
+                "inputs_config": [
+                    {
+                        "name": "sequence",
+                        "input_shape": [
+                            1,
+                            4,
+                            200
+                        ]
+                    }
+                ]
+            },
+            "key_metric_history": [
+                [
+                    "train",
+                    "valid"
+                ],
+                [
+                    0.6631010320726534,
+                    0.6662615618067212
+                ],
+                [
+                    0.6946579929249476,
+                    0.6963459631242493
+                ],
+                [
+                    0.7850871654219174,
+                    0.775255416897962
+                ],
+                [
+                    0.8290344881205797,
+                    0.8145389150246679
+                ],
+                [
+                    0.8632800701534226,
+                    0.8399535692136304
+                ],
+                [
+                    0.902571581286873,
+                    0.8778965253276899
+                ],
+                [
+                    0.9319998149104238,
+                    0.9133093318906592
+                ],
+                [
+                    0.9582128097811604,
+                    0.9385567346242704
+                ],
+                [
+                    0.9684978967147453,
+                    0.9552743101753185
+                ],
+                [
+                    0.9779399625652329,
+                    0.9672873308236457
+                ],
+                [
+                    0.9783334071284749,
+                    0.9746236712033675
+                ],
+                [
+                    0.9869227045742449,
+                    0.9798788389931078
+                ],
+                [
+                    0.9891418362010711,
+                    0.9820545772508283
+                ],
+                [
+                    0.9925484126929117,
+                    0.9842816932106927
+                ],
+                [
+                    0.9919735794202958,
+                    0.9853060202364547
+                ],
+                [
+                    0.9920146190832321,
+                    0.9865094117283159
+                ],
+                [
+                    0.9911332590965979,
+                    0.9874273277029126
+                ],
+                [
+                    0.9944702078244738,
+                    0.987833316172661
+                ],
+                [
+                    0.9948116498306719,
+                    0.9876134345171828
+                ],
+                [
+                    0.9958861132812219,
+                    0.9883405779818454
+                ],
+                [
+                    0.9952471412094299,
+                    0.9887032272366882
+                ],
+                [
+                    0.9952701478370899,
+                    0.9887279572066102
+                ],
+                [
+                    0.9945459586587955,
+                    0.9889842904453839
+                ],
+                [
+                    0.9962757477264623,
+                    0.9895063614600508
+                ],
+                [
+                    0.9967220836207463,
+                    0.9889458480219192
+                ],
+                [
+                    0.9977675761723312,
+                    0.9893104033359487
+                ],
+                [
+                    0.9968633732366269,
+                    0.9893366865387874
+                ],
+                [
+                    0.9969210270224366,
+                    0.9891255111257139
+                ],
+                [
+                    0.9965623802283384,
+                    0.9892973255076699
+                ],
+                [
+                    0.9974159913051116,
+                    0.9893237569491853
+                ],
+                [
+                    0.9978916258936891,
+                    0.9892741542866076
+                ],
+                [
+                    0.9985625374569672,
+                    0.9891832826471335
+                ],
+                [
+                    0.9978716185095015,
+                    0.98923055411807
+                ],
+                [
+                    0.9976181861306582,
+                    0.9889645248349176
+                ]
+            ],
+            "saved_files_config": {
+                "weights_file": "model_files/record_7_model_9pOJw_modelWeights.h5",
+                "directory": "model_files",
+                "prefix": "model_9pOJw",
+                "yaml_file": "model_files/record_7_model_9pOJw_modelYaml.yaml"
+            }
+        },
+        {
+            "record_number": 8,
+            "message": "Test model",
+            "best_valid_key_metric": 0.9892007205080956,
+            "best_valid_perf_info": {
+                "valid_all_stats": {
+                    "per_output_auROC": {
+                        "output": [
+                            0.9878885946847112,
+                            0.9839325793524266,
+                            0.9957809874871486
+                        ]
+                    },
+                    "mean_balanced_accuracy": 0.9289900822232138,
+                    "mean_auROC": 0.9892007205080956,
+                    "per_output_balanced_accuracy": {
+                        "output": [
+                            0.8639796018436795,
+                            0.9499409194065682,
+                            0.9730497254193937
+                        ]
+                    },
+                    "mean_auPRC": 0.9831194338029209,
+                    "per_output_auPRC": {
+                        "output": [
+                            0.9721903868942056,
+                            0.9810517602599159,
+                            0.9961161542546412
+                        ]
+                    },
+                    "mean_unbalanced_accuracy": 0.9504166666666666,
+                    "per_output_unbalanced_accuracy": {
+                        "output": [
+                            0.9275,
+                            0.95,
+                            0.97375
+                        ]
+                    }
+                },
+                "epoch": 46,
+                "valid_key_metric": 0.9892007205080956,
+                "train_key_metric": 0.9953708959137155
+            },
+            "training_metadata": {
+                "termination_condition": "KeyboardInterrupt",
+                "total_epochs_trained_for": 51
+            },
+            "other_data_loaders_info": {
+                "train": {
+                    "path_to_hdf5": "train_data.hdf5",
+                    "bundle_x_and_y_in_generator": true,
+                    "num_to_load_for_eval": 1000,
+                    "batch_size": 300
+                }
+            },
+            "model_trainer_info": {
+                "samples_per_epoch": 30000,
+                "stopping_criterion_config": {
+                    "class": "EarlyStopping",
+                    "kwargs": {
+                        "max_epochs": 500,
+                        "epochs_to_wait": 10
+                    }
+                },
+                "class_weight": null
+            },
+            "model_creator_info": {
+                "outputs_config": [
+                    {
+                        "input": "output_act",
+                        "name": "output"
+                    }
+                ],
+                "optimizer_config": {
+                    "class": "keras.optimizers.Adam",
+                    "kwargs": {
+                        "lr": 0.001
+                    }
+                },
+                "loss_dictionary": {
+                    "output": "binary_crossentropy"
+                },
+                "nodes_config": [
+                    {
+                        "input_name": "sequence",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv1",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 4
+                        }
+                    },
+                    {
+                        "input_name": "conv1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv1_act",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv2",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 1
+                        }
+                    },
+                    {
+                        "input_name": "conv2",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv2_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv2_act",
+                        "class": "keras.layers.convolutional.AveragePooling2D",
+                        "name": "avg_pool",
+                        "kwargs": {
+                            "strides": [
+                                1,
+                                1
+                            ],
+                            "pool_size": [
+                                1,
+                                180
+                            ]
+                        }
+                    },
+                    {
+                        "input_name": "avg_pool",
+                        "class": "keras.layers.core.Flatten",
+                        "name": "flatten",
+                        "kwargs": {}
+                    },
+                    {
+                        "input_name": "flatten",
+                        "class": "keras.layers.core.Dense",
+                        "name": "dense1",
+                        "kwargs": {
+                            "output_dim": 5
+                        }
+                    },
+                    {
+                        "input_name": "dense1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "dense1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "dense1_act",
+                        "class": "keras.layers.core.Dropout",
+                        "name": "dense1_dropout",
+                        "kwargs": {
+                            "p": 0.5
+                        }
+                    },
+                    {
+                        "input_name": "dense1_dropout",
+                        "class": "keras.layers.core.Dense",
+                        "name": "output_preact",
+                        "kwargs": {
+                            "output_dim": 3
+                        }
+                    },
+                    {
+                        "input_name": "output_preact",
+                        "class": "keras.layers.core.Activation",
+                        "name": "output_act",
+                        "kwargs": {
+                            "activation": "sigmoid"
+                        }
+                    }
+                ],
+                "inputs_config": [
+                    {
+                        "name": "sequence",
+                        "input_shape": [
+                            1,
+                            4,
+                            200
+                        ]
+                    }
+                ]
+            },
+            "key_metric_history": [
+                [
+                    "train",
+                    "valid"
+                ],
+                [
+                    0.472288246529005,
+                    0.4822885325530691
+                ],
+                [
+                    0.648422476792148,
+                    0.6289394442161385
+                ],
+                [
+                    0.7041997003053745,
+                    0.6990499357850858
+                ],
+                [
+                    0.7589657484025704,
+                    0.7348238146857882
+                ],
+                [
+                    0.806314278119518,
+                    0.7876854360591058
+                ],
+                [
+                    0.821196372881996,
+                    0.7998776653570626
+                ],
+                [
+                    0.8094311105318237,
+                    0.8016114577370844
+                ],
+                [
+                    0.8261463232066263,
+                    0.8120211215721861
+                ],
+                [
+                    0.8275605733107007,
+                    0.8123883461222675
+                ],
+                [
+                    0.8032428831963924,
+                    0.7909882881199412
+                ],
+                [
+                    0.8296344024857563,
+                    0.8153445898438211
+                ],
+                [
+                    0.856139065603469,
+                    0.8435058243571968
+                ],
+                [
+                    0.86387390307853,
+                    0.8432377272720911
+                ],
+                [
+                    0.8828322682622544,
+                    0.8618734636374232
+                ],
+                [
+                    0.9436440265955334,
+                    0.9307639658137353
+                ],
+                [
+                    0.9731696035430808,
+                    0.9618123974556115
+                ],
+                [
+                    0.9738452444507302,
+                    0.9693967662166081
+                ],
+                [
+                    0.9832550007532915,
+                    0.9769841610798521
+                ],
+                [
+                    0.9860011743262566,
+                    0.9779280522206554
+                ],
+                [
+                    0.987182945986658,
+                    0.9781397463583675
+                ],
+                [
+                    0.9902673373295174,
+                    0.9824839685355098
+                ],
+                [
+                    0.9906888803905002,
+                    0.9828531031713853
+                ],
+                [
+                    0.9871793871510591,
+                    0.984565657960493
+                ],
+                [
+                    0.9907661274449978,
+                    0.9856070389477273
+                ],
+                [
+                    0.9916565351011214,
+                    0.9864279420264742
+                ],
+                [
+                    0.9922888939533091,
+                    0.9852167311664478
+                ],
+                [
+                    0.9916262517095914,
+                    0.9857679319199301
+                ],
+                [
+                    0.9936612241328704,
+                    0.9865459880032704
+                ],
+                [
+                    0.9901649734594242,
+                    0.9870722845038179
+                ],
+                [
+                    0.9929541971574268,
+                    0.9871872598725934
+                ],
+                [
+                    0.994147167629278,
+                    0.987347561195255
+                ],
+                [
+                    0.9934887570997925,
+                    0.9872195676705334
+                ],
+                [
+                    0.9926317638023603,
+                    0.9864108115594551
+                ],
+                [
+                    0.9950351068105109,
+                    0.9880051055787664
+                ],
+                [
+                    0.9914312608838936,
+                    0.9871202442644026
+                ],
+                [
+                    0.9932881373084745,
+                    0.9869264057925337
+                ],
+                [
+                    0.9942134826321144,
+                    0.9879607760809166
+                ],
+                [
+                    0.9941710597706938,
+                    0.9881362979168418
+                ],
+                [
+                    0.993823845355169,
+                    0.9867013603029844
+                ],
+                [
+                    0.9950874887100735,
+                    0.9878436996916252
+                ],
+                [
+                    0.992824385773755,
+                    0.9858134711367662
+                ],
+                [
+                    0.9946357270105611,
+                    0.9882043254341558
+                ],
+                [
+                    0.9954020688340027,
+                    0.9881408396784517
+                ],
+                [
+                    0.9943613441247648,
+                    0.9876793767840368
+                ],
+                [
+                    0.9942663418644613,
+                    0.9841353355610178
+                ],
+                [
+                    0.9953708959137155,
+                    0.9892007205080956
+                ],
+                [
+                    0.9933407096300719,
+                    0.9850986731524459
+                ],
+                [
+                    0.9950474212737855,
+                    0.9857343149436621
+                ],
+                [
+                    0.9966515481799166,
+                    0.9886144979541953
+                ],
+                [
+                    0.9951840114467264,
+                    0.9889157520526908
+                ],
+                [
+                    0.9949961162571804,
+                    0.9860432818391592
+                ]
+            ],
+            "saved_files_config": {
+                "weights_file": "model_files/record_8_model_TCjgP_modelWeights.h5",
+                "directory": "model_files",
+                "prefix": "model_TCjgP",
+                "yaml_file": "model_files/record_8_model_TCjgP_modelYaml.yaml"
+            }
+        },
+        {
+            "record_number": 6,
+            "message": "Test model",
+            "best_valid_key_metric": 0.9887067509282597,
+            "best_valid_perf_info": {
+                "valid_all_stats": {
+                    "per_output_auROC": {
+                        "output": [
+                            0.9869978098133438,
+                            0.9846077861345036,
+                            0.9945146568369317
+                        ]
+                    },
+                    "mean_balanced_accuracy": 0.9513546461256696,
+                    "mean_auROC": 0.9887067509282597,
+                    "per_output_balanced_accuracy": {
+                        "output": [
+                            0.9461116014514073,
+                            0.942701202243187,
                             0.9652511346824143
                         ]
                     },
-                    "mean_balanced_accuracy": 0.95135464612566956,
+                    "mean_auPRC": 0.9847760262638507,
+                    "per_output_auPRC": {
+                        "output": [
+                            0.9723011551714906,
+                            0.9870565422866746,
+                            0.9949703813333868
+                        ]
+                    },
+                    "mean_unbalanced_accuracy": 0.9562499999999999,
                     "per_output_unbalanced_accuracy": {
                         "output": [
-                            0.95999999999999996,
+                            0.96,
                             0.9425,
+                            0.96625
+                        ]
+                    }
+                },
+                "epoch": 38,
+                "valid_key_metric": 0.9887067509282597,
+                "train_key_metric": 0.9972713545571694
+            },
+            "training_metadata": {
+                "termination_condition": "normal",
+                "total_epochs_trained_for": 48
+            },
+            "other_data_loaders_info": {
+                "train": {
+                    "path_to_hdf5": "train_data.hdf5",
+                    "bundle_x_and_y_in_generator": true,
+                    "num_to_load_for_eval": 1000,
+                    "batch_size": 300
+                }
+            },
+            "model_trainer_info": {
+                "samples_per_epoch": 30000,
+                "stopping_criterion_config": {
+                    "class": "EarlyStopping",
+                    "kwargs": {
+                        "max_epochs": 500,
+                        "epochs_to_wait": 10
+                    }
+                },
+                "class_weight": null
+            },
+            "model_creator_info": {
+                "outputs_config": [
+                    {
+                        "input": "output_act",
+                        "name": "output"
+                    }
+                ],
+                "optimizer_config": {
+                    "class": "keras.optimizers.Adam",
+                    "kwargs": {
+                        "lr": 0.001
+                    }
+                },
+                "loss_dictionary": {
+                    "output": "binary_crossentropy"
+                },
+                "nodes_config": [
+                    {
+                        "input_name": "sequence",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv1",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 4
+                        }
+                    },
+                    {
+                        "input_name": "conv1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv1_act",
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "name": "conv2",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 1
+                        }
+                    },
+                    {
+                        "input_name": "conv2",
+                        "class": "keras.layers.core.Activation",
+                        "name": "conv2_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "conv2_act",
+                        "class": "keras.layers.convolutional.AveragePooling2D",
+                        "name": "avg_pool",
+                        "kwargs": {
+                            "strides": [
+                                1,
+                                1
+                            ],
+                            "pool_size": [
+                                1,
+                                180
+                            ]
+                        }
+                    },
+                    {
+                        "input_name": "avg_pool",
+                        "class": "keras.layers.core.Flatten",
+                        "name": "flatten",
+                        "kwargs": {}
+                    },
+                    {
+                        "input_name": "flatten",
+                        "class": "keras.layers.core.Dense",
+                        "name": "dense1",
+                        "kwargs": {
+                            "output_dim": 5
+                        }
+                    },
+                    {
+                        "input_name": "dense1",
+                        "class": "keras.layers.core.Activation",
+                        "name": "dense1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "input_name": "dense1_act",
+                        "class": "keras.layers.core.Dense",
+                        "name": "output_preact",
+                        "kwargs": {
+                            "output_dim": 3
+                        }
+                    },
+                    {
+                        "input_name": "output_preact",
+                        "class": "keras.layers.core.Activation",
+                        "name": "output_act",
+                        "kwargs": {
+                            "activation": "sigmoid"
+                        }
+                    }
+                ],
+                "inputs_config": [
+                    {
+                        "name": "sequence",
+                        "input_shape": [
+                            1,
+                            4,
+                            200
+                        ]
+                    }
+                ]
+            },
+            "key_metric_history": [
+                [
+                    "train",
+                    "valid"
+                ],
+                [
+                    0.6553704625015839,
+                    0.6555712981858233
+                ],
+                [
+                    0.6690659917076299,
+                    0.6681620649651759
+                ],
+                [
+                    0.7343336367854674,
+                    0.7308540443890363
+                ],
+                [
+                    0.7917306166925008,
+                    0.778363149443485
+                ],
+                [
+                    0.812694290182348,
+                    0.7899548995510169
+                ],
+                [
+                    0.8344151277796991,
+                    0.8073843435576551
+                ],
+                [
+                    0.8278744581352723,
+                    0.811009624680109
+                ],
+                [
+                    0.8420011999504271,
+                    0.8194762667673201
+                ],
+                [
+                    0.8409586210816492,
+                    0.8224222929791987
+                ],
+                [
+                    0.8561748632285174,
+                    0.8447076085263413
+                ],
+                [
+                    0.9070181204786255,
+                    0.8838062206383549
+                ],
+                [
+                    0.9343710311621359,
+                    0.9119220709526327
+                ],
+                [
+                    0.945490701703756,
+                    0.9310075220451602
+                ],
+                [
+                    0.9613903881595979,
+                    0.9446238636584131
+                ],
+                [
+                    0.9653938692870992,
+                    0.9549486139918497
+                ],
+                [
+                    0.9707385907481366,
+                    0.9624422470857735
+                ],
+                [
+                    0.9725441957812476,
+                    0.9681466364638869
+                ],
+                [
+                    0.9812791554063001,
+                    0.9718025489311555
+                ],
+                [
+                    0.9836165949346461,
+                    0.9773854986833598
+                ],
+                [
+                    0.9894713636769236,
+                    0.9800495246821402
+                ],
+                [
+                    0.9889052088818323,
+                    0.9820151516885849
+                ],
+                [
+                    0.989255244599882,
+                    0.9840073927840343
+                ],
+                [
+                    0.9885371459911182,
+                    0.9848615467400422
+                ],
+                [
+                    0.9914627534422028,
+                    0.985445990170311
+                ],
+                [
+                    0.9922757284290894,
+                    0.986726781601346
+                ],
+                [
+                    0.9944140925390667,
+                    0.9872287437376187
+                ],
+                [
+                    0.994304053811811,
+                    0.9871475068914347
+                ],
+                [
+                    0.9930422832537072,
+                    0.9875476333691927
+                ],
+                [
+                    0.993732648443225,
+                    0.9877512421703027
+                ],
+                [
+                    0.994459620021142,
+                    0.9879758341874149
+                ],
+                [
+                    0.995053165989078,
+                    0.9883878916043098
+                ],
+                [
+                    0.9961944449518848,
+                    0.98860847654172
+                ],
+                [
+                    0.9960367257190074,
+                    0.9882979059003453
+                ],
+                [
+                    0.9954346776663527,
+                    0.988240234305159
+                ],
+                [
+                    0.9960490750975657,
+                    0.988496196239864
+                ],
+                [
+                    0.9962862430216237,
+                    0.9886497024253141
+                ],
+                [
+                    0.9966377356362157,
+                    0.9886865654044797
+                ],
+                [
+                    0.9972713545571694,
+                    0.9887067509282597
+                ],
+                [
+                    0.9971201924494295,
+                    0.9882736331041281
+                ],
+                [
+                    0.9968005929327357,
+                    0.9881868929392138
+                ],
+                [
+                    0.9972899587169032,
+                    0.9883682552908736
+                ],
+                [
+                    0.9972323067860261,
+                    0.9883651897178248
+                ],
+                [
+                    0.9976334884129762,
+                    0.9884008279857207
+                ],
+                [
+                    0.9980266526310682,
+                    0.9882135545488108
+                ],
+                [
+                    0.9978207027002094,
+                    0.9880399090983856
+                ],
+                [
+                    0.9976540926768648,
+                    0.9879844442969388
+                ],
+                [
+                    0.9979828089774734,
+                    0.9878955020764554
+                ],
+                [
+                    0.9979416881600315,
+                    0.9878828220745083
+                ]
+            ],
+            "saved_files_config": {
+                "weights_file": "model_files/record_6_model_kEIyl_modelWeights.h5",
+                "directory": "model_files",
+                "prefix": "model_kEIyl",
+                "yaml_file": "model_files/record_6_model_kEIyl_modelYaml.yaml"
+            }
+        },
+        {
+            "record_number": 9,
+            "message": "Test model",
+            "best_valid_key_metric": 0.9886569529854814,
+            "best_valid_perf_info": {
+                "epoch": 39,
+                "valid_key_metric": 0.9886569529854814,
+                "train_key_metric": 0.99660769868295507,
+                "valid_all_stats": {
+                    "per_output_auROC": {
+                        "output": [
+                            0.9832630512242162,
+                            0.98708354433545276,
+                            0.99562426339677523
+                        ]
+                    },
+                    "mean_auROC": 0.9886569529854814,
+                    "per_output_auPRC": {
+                        "output": [
+                            0.96332595831924117,
+                            0.98797886570646021,
+                            0.99606404565628448
+                        ]
+                    },
+                    "mean_auPRC": 0.98245628989399536,
+                    "per_output_balanced_accuracy": {
+                        "output": [
+                            0.83559707103396419,
+                            0.9403754899938106,
+                            0.9655269690814714
+                        ]
+                    },
+                    "mean_balanced_accuracy": 0.91383317670308217,
+                    "per_output_unbalanced_accuracy": {
+                        "output": [
+                            0.91125,
+                            0.93999999999999995,
                             0.96625000000000005
                         ]
                     },
-                    "mean_unbalanced_accuracy": 0.95624999999999993
+                    "mean_unbalanced_accuracy": 0.93916666666666659
                 }
             },
             "key_metric_history": [
@@ -59,203 +1198,207 @@
                     "valid"
                 ],
                 [
-                    0.65537046250158393,
-                    0.65557129818582327
+                    0.65549812011168873,
+                    0.65223514015679263
                 ],
                 [
-                    0.66906599170762993,
-                    0.66816206496517594
+                    0.65495313922262188,
+                    0.64164974335103508
                 ],
                 [
-                    0.73433363678546737,
-                    0.73085404438903634
+                    0.71703868416403183,
+                    0.71692101383715512
                 ],
                 [
-                    0.79173061669250078,
-                    0.77836314944348495
+                    0.79586313453843704,
+                    0.78161867395215989
                 ],
                 [
-                    0.81269429018234796,
-                    0.78995489955101694
+                    0.83577668431503227,
+                    0.8140453644140887
                 ],
                 [
-                    0.83441512777969906,
-                    0.80738434355765509
+                    0.86436183163247193,
+                    0.83961392552957614
                 ],
                 [
-                    0.82787445813527227,
-                    0.81100962468010895
+                    0.886655614961254,
+                    0.86849407905270459
                 ],
                 [
-                    0.8420011999504271,
-                    0.81947626676732011
+                    0.918429540399333,
+                    0.89450210731762259
                 ],
                 [
-                    0.8409586210816492,
-                    0.82242229297919867
+                    0.93693804343042775,
+                    0.92019450176734108
                 ],
                 [
-                    0.85617486322851744,
-                    0.8447076085263413
+                    0.95070435753323368,
+                    0.93922301440028433
                 ],
                 [
-                    0.90701812047862551,
-                    0.8838062206383549
+                    0.95520640659478673,
+                    0.94812223914151905
                 ],
                 [
-                    0.93437103116213593,
-                    0.91192207095263267
+                    0.96764675460981675,
+                    0.95640921292063441
                 ],
                 [
-                    0.94549070170375604,
-                    0.93100752204516024
+                    0.9736511141963814,
+                    0.96294486824135406
                 ],
                 [
-                    0.96139038815959788,
-                    0.94462386365841311
+                    0.98215311059170729,
+                    0.96948642455112433
                 ],
                 [
-                    0.96539386928709925,
-                    0.95494861399184972
+                    0.98022391234801709,
+                    0.97306547681017774
                 ],
                 [
-                    0.97073859074813662,
-                    0.96244224708577353
+                    0.98066083607644527,
+                    0.97701747725725996
                 ],
                 [
-                    0.97254419578124762,
-                    0.96814663646388688
+                    0.98191782318750354,
+                    0.97966584135320744
                 ],
                 [
-                    0.98127915540630006,
-                    0.97180254893115547
+                    0.98642110147554696,
+                    0.9818610414914285
                 ],
                 [
-                    0.98361659493464615,
-                    0.97738549868335978
+                    0.98911941215687571,
+                    0.98288495411981947
                 ],
                 [
-                    0.98947136367692357,
-                    0.98004952468214024
+                    0.99189014501473849,
+                    0.9834527234070839
                 ],
                 [
-                    0.98890520888183231,
-                    0.98201515168858489
+                    0.99062802395669591,
+                    0.98519194911508334
                 ],
                 [
-                    0.98925524459988201,
-                    0.98400739278403426
+                    0.98861018716484461,
+                    0.985434679780815
                 ],
                 [
-                    0.98853714599111819,
-                    0.98486154674004223
+                    0.98887667058276651,
+                    0.98566227454417554
                 ],
                 [
-                    0.9914627534422028,
-                    0.98544599017031098
+                    0.99151577166885263,
+                    0.98661206876001184
                 ],
                 [
-                    0.9922757284290894,
-                    0.98672678160134597
+                    0.9929088117914775,
+                    0.98664425752606988
                 ],
                 [
-                    0.99441409253906665,
-                    0.98722874373761871
+                    0.99481067270902612,
+                    0.987166730542267
                 ],
                 [
-                    0.99430405381181097,
-                    0.98714750689143471
+                    0.99371100572810089,
+                    0.9871398840755311
                 ],
                 [
-                    0.99304228325370725,
-                    0.98754763336919271
+                    0.99229563435430113,
+                    0.98735203809164707
                 ],
                 [
-                    0.99373264844322495,
-                    0.98775124217030275
+                    0.99265044800195845,
+                    0.98734732504243672
                 ],
                 [
-                    0.99445962002114197,
-                    0.98797583418741486
+                    0.99383967577525312,
+                    0.98795938832399732
                 ],
                 [
-                    0.995053165989078,
-                    0.98838789160430984
+                    0.9943698443755582,
+                    0.98696781647656995
                 ],
                 [
-                    0.99619444495188481,
-                    0.98860847654172002
+                    0.99537961057871727,
+                    0.98680558368736737
                 ],
                 [
-                    0.99603672571900737,
-                    0.98829790590034527
+                    0.99504240858271664,
+                    0.98775332913536218
                 ],
                 [
-                    0.99543467766635274,
-                    0.98824023430515895
+                    0.99469099528770644,
+                    0.98765952168676119
                 ],
                 [
-                    0.99604907509756568,
-                    0.98849619623986396
+                    0.99479768211182817,
+                    0.98775224318338417
                 ],
                 [
-                    0.99628624302162372,
-                    0.98864970242531414
+                    0.99503708891134401,
+                    0.98847375245657476
                 ],
                 [
-                    0.99663773563621572,
-                    0.98868656540447974
+                    0.99616247312539075,
+                    0.98790648643477363
                 ],
                 [
-                    0.99727135455716942,
-                    0.98870675092825966
+                    0.99695853064142048,
+                    0.98787063821326504
                 ],
                 [
-                    0.99712019244942951,
-                    0.98827363310412808
+                    0.99660769868295507,
+                    0.9886569529854814
                 ],
                 [
-                    0.99680059293273571,
-                    0.9881868929392138
+                    0.99654399224923884,
+                    0.98813914375818879
                 ],
                 [
-                    0.99728995871690318,
-                    0.98836825529087358
+                    0.99565900613444869,
+                    0.98745172883231591
                 ],
                 [
-                    0.99723230678602615,
-                    0.98836518971782483
+                    0.99615457954565623,
+                    0.98845666534198839
                 ],
                 [
-                    0.99763348841297617,
-                    0.98840082798572071
+                    0.99760505404621946,
+                    0.98828651785272326
                 ],
                 [
-                    0.99802665263106816,
-                    0.98821355454881077
+                    0.9978010202192048,
+                    0.9879029630571271
                 ],
                 [
-                    0.99782070270020939,
-                    0.98803990909838557
+                    0.99774537534372831,
+                    0.98865683221388567
                 ],
                 [
-                    0.99765409267686478,
-                    0.98798444429693877
+                    0.99729731481074246,
+                    0.98805707322916936
                 ],
                 [
-                    0.99798280897747338,
-                    0.98789550207645538
+                    0.99734226625811362,
+                    0.98796842463750556
                 ],
                 [
-                    0.99794168816003148,
-                    0.98788282207450828
+                    0.99735899183356302,
+                    0.98834610039214521
+                ],
+                [
+                    0.9976519958537603,
+                    0.98703927580672979
                 ]
             ],
             "saved_files_config": {
-                "weights_file": "model_files/record_6_model_kEIyl_modelWeights.h5",
-                "yaml_file": "model_files/record_6_model_kEIyl_modelYaml.yaml",
+                "weights_file": "model_files/record_9_model_1Y5wX_modelWeights.h5",
+                "yaml_file": "model_files/record_9_model_1Y5wX_modelYaml.yaml",
                 "directory": "model_files",
-                "prefix": "model_kEIyl"
+                "prefix": "model_1Y5wX"
             },
             "model_creator_info": {
                 "inputs_config": [
@@ -331,7 +1474,7 @@
                         "input_name": "flatten",
                         "name": "dense1",
                         "kwargs": {
-                            "output_dim": 5
+                            "output_dim": 10
                         }
                     },
                     {
@@ -343,8 +1486,16 @@
                         }
                     },
                     {
-                        "class": "keras.layers.core.Dense",
+                        "class": "keras.layers.core.Dropout",
                         "input_name": "dense1_act",
+                        "name": "dense1_dropout",
+                        "kwargs": {
+                            "p": 0.5
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Dense",
+                        "input_name": "dense1_dropout",
                         "name": "output_preact",
                         "kwargs": {
                             "output_dim": 3
@@ -396,7 +1547,7 @@
             },
             "training_metadata": {
                 "termination_condition": "normal",
-                "total_epochs_trained_for": 48
+                "total_epochs_trained_for": 49
             }
         },
         {
@@ -413,7 +1564,6 @@
                         ]
                     },
                     "mean_balanced_accuracy": 0.9041830453750613,
-                    "mean_auROC": 0.9651258679020894,
                     "per_output_balanced_accuracy": {
                         "output": [
                             0.8152561210813638,
@@ -421,6 +1571,7 @@
                             0.9676208029288598
                         ]
                     },
+                    "mean_auROC": 0.9651258679020894,
                     "mean_auPRC": 0.9383610300505664,
                     "per_output_auPRC": {
                         "output": [
@@ -774,6 +1925,7 @@
                         ]
                     },
                     "mean_balanced_accuracy": 0.8834941426600572,
+                    "mean_auROC": 0.96494054484256,
                     "per_output_balanced_accuracy": {
                         "output": [
                             0.8354852397405589,
@@ -781,7 +1933,6 @@
                             0.9467938009522558
                         ]
                     },
-                    "mean_auROC": 0.96494054484256,
                     "mean_auPRC": 0.9481823647756414,
                     "per_output_auPRC": {
                         "output": [
@@ -2153,6 +3304,7 @@
                         ]
                     },
                     "mean_balanced_accuracy": 0.8811720261214955,
+                    "mean_auROC": 0.9562415425644509,
                     "per_output_balanced_accuracy": {
                         "output": [
                             0.7691008754838542,
@@ -2160,7 +3312,6 @@
                             0.9673842996665227
                         ]
                     },
-                    "mean_auROC": 0.9562415425644509,
                     "mean_auPRC": 0.9198246790032111,
                     "per_output_auPRC": {
                         "output": [
@@ -2598,7 +3749,6 @@
                         ]
                     },
                     "mean_balanced_accuracy": 0.8553320811997853,
-                    "mean_auROC": 0.9415663305747682,
                     "per_output_balanced_accuracy": {
                         "output": [
                             0.8069562431264559,
@@ -2606,6 +3756,7 @@
                             0.9308926303407974
                         ]
                     },
+                    "mean_auROC": 0.9415663305747682,
                     "mean_auPRC": 0.9158367980485455,
                     "per_output_auPRC": {
                         "output": [
@@ -3445,7 +4596,6 @@
                         ]
                     },
                     "mean_balanced_accuracy": 0.7581339049670758,
-                    "mean_auROC": 0.8592379824186015,
                     "per_output_balanced_accuracy": {
                         "output": [
                             0.6949705141194503,
@@ -3453,6 +4603,7 @@
                             0.8549999687169573
                         ]
                     },
+                    "mean_auROC": 0.8592379824186015,
                     "mean_auPRC": 0.7959672705175738,
                     "per_output_auPRC": {
                         "output": [
