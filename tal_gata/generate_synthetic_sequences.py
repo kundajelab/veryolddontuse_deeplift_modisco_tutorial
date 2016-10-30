@@ -16,11 +16,11 @@ loaded_motifs = sn.LoadedEncodeMotifs(
                     background=background_frequency)
 
 sequenceSetGenerators = []
-for motif_set,name_prefix in [
-                   (('GATA_disc1', 'TAL1_known1'), 'gata_tal1'),
-                   (('GATA_disc1',), 'gata_only'),
-                   (('TAL1_known1',), 'tal1_only'),
-                   ([], 'empty')]:
+for motif_set,name_prefix,num_seqs,mean in [
+                   (('GATA_disc1', 'TAL1_known1'),'gata_tal1',2000,1),
+                   (('GATA_disc1',), 'gata_only',2000,2),
+                   (('TAL1_known1',), 'tal1_only',2000,2),
+                   ([], 'empty', 38000,None)]:
     embedInBackground = sn.EmbedInABackground(
         backgroundGenerator=sn.ZeroOrderBackgroundGenerator(seqLength=200),
         embedders=[
@@ -35,14 +35,14 @@ for motif_set,name_prefix in [
                     positionGenerator=sn.UniformPositionGenerator(),
                     name=motif_name),
                 quantityGenerator=sn.MinMaxWrapper(
-                    sn.PoissonQuantityGenerator(2),
+                    sn.PoissonQuantityGenerator(mean),
                     theMax=3, theMin=1),
             )
             for motif_name in motif_set
         ],
        namePrefix=name_prefix+"_")
     sequenceSetGenerators.append(
-        sn.GenerateSequenceNTimes(embedInBackground, N=2000))
+        sn.GenerateSequenceNTimes(embedInBackground, N=num_seqs))
 
 label_names = ["task1", "task2", "task3"]
 #map motifs to the set of tasks they are relevant for
