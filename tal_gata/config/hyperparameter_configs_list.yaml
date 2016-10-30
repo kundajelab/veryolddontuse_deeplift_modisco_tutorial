@@ -108,8 +108,8 @@
                         "class": "keras.objectives.get_weighted_binary_crossentropy",
                         "autoload": True,
                         "kwargs": {
-                            "w0_weights": [0.47, 1.0, 1.0],
-                            "w1_weights": [10.0, 10.0, 10.0]
+                            "w0_weights": [1.0, 2.0, 2.0],
+                            "w1_weights": [3.0, 2.0, 2.0]
                         } 
                     },
                 }  
@@ -118,12 +118,12 @@
         "model_trainer":{
             "class": "keras_model_trainer.KerasFitGeneratorModelTrainer",
             "kwargs": {
-                "samples_per_epoch": 46000,
+                "samples_per_epoch": 30000,
                 "stopping_criterion_config": {
                     "class": "EarlyStopping" ,
                     "kwargs": {
                        "max_epochs": 500, 
-                       "epochs_to_wait": 30
+                       "epochs_to_wait": 10
                     } 
                 },
             }

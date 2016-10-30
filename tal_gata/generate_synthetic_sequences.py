@@ -7,7 +7,7 @@ import numpy as np
 import random
 
 #background frequence
-background_frequency = OrderedDict([('A', 0.27), ('C', 0.23), ('G', 0.23), ('T', 0.27)])
+background_frequency = OrderedDict([('A', 0.3), ('C', 0.2), ('G', 0.2), ('T', 0.3)])
 
 #read in the motifs file
 loaded_motifs = sn.LoadedEncodeMotifs(
@@ -20,7 +20,7 @@ for motif_set,name_prefix,num_seqs,mean in [
                    (('GATA_disc1', 'TAL1_known1'),'gata_tal1',2000,1),
                    (('GATA_disc1',), 'gata_only',2000,2),
                    (('TAL1_known1',), 'tal1_only',2000,2),
-                   ([], 'empty', 38000,None)]:
+                   ([], 'empty', 2000, None)]:
     embedInBackground = sn.EmbedInABackground(
         backgroundGenerator=sn.ZeroOrderBackgroundGenerator(seqLength=200),
         embedders=[

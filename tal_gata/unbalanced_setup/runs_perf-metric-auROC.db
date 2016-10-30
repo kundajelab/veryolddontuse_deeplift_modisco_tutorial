@@ -1,0 +1,370 @@
+{
+    "metadata": {
+        "total_records": 1,
+        "best_valid_key_metric": 0.99495177870686646,
+        "best_saved_files_config": {
+            "weights_file": "model_files/record_1_model_brodc_modelWeights.h5",
+            "yaml_file": "model_files/record_1_model_brodc_modelYaml.yaml",
+            "directory": "model_files",
+            "prefix": "model_brodc"
+        }
+    },
+    "records": [
+        {
+            "record_number": 1,
+            "message": "Test model",
+            "best_valid_key_metric": 0.99495177870686646,
+            "best_valid_perf_info": {
+                "epoch": 33,
+                "valid_key_metric": 0.99495177870686646,
+                "train_key_metric": 0.99685811925315793,
+                "valid_all_stats": {
+                    "per_output_auROC": {
+                        "output": [
+                            0.99665722050473826,
+                            0.99056500000000014,
+                            0.99763311561586099
+                        ]
+                    },
+                    "mean_auROC": 0.99495177870686646,
+                    "per_output_auPRC": {
+                        "output": [
+                            0.94399008794501815,
+                            0.94528309756325835,
+                            0.98051139274352406
+                        ]
+                    },
+                    "mean_auPRC": 0.95659485941726674,
+                    "per_output_balanced_accuracy": {
+                        "output": [
+                            0.97134074882301835,
+                            0.95399999999999996,
+                            0.97502433859585369
+                        ]
+                    },
+                    "mean_balanced_accuracy": 0.9667883624729573,
+                    "per_output_unbalanced_accuracy": {
+                        "output": [
+                            0.97431818181818186,
+                            0.96545454545454545,
+                            0.98409090909090913
+                        ]
+                    },
+                    "mean_unbalanced_accuracy": 0.97462121212121211
+                }
+            },
+            "key_metric_history": [
+                [
+                    "train",
+                    "valid"
+                ],
+                [
+                    0.72164661905252114,
+                    0.7347562360333022
+                ],
+                [
+                    0.86797351985774396,
+                    0.87361363856320795
+                ],
+                [
+                    0.9355998618910194,
+                    0.92317183178597662
+                ],
+                [
+                    0.94613535593170595,
+                    0.9467292040641917
+                ],
+                [
+                    0.96606363982413512,
+                    0.9564499438170051
+                ],
+                [
+                    0.96411745433411566,
+                    0.9618505130783892
+                ],
+                [
+                    0.97356341776096678,
+                    0.96623062595239639
+                ],
+                [
+                    0.96961597428006485,
+                    0.96926860560589956
+                ],
+                [
+                    0.98045279362285898,
+                    0.97293245662909011
+                ],
+                [
+                    0.97430600548116952,
+                    0.97645296888747579
+                ],
+                [
+                    0.98523332278005837,
+                    0.98033116442196844
+                ],
+                [
+                    0.98361177571749325,
+                    0.98334078935206826
+                ],
+                [
+                    0.98719644562485753,
+                    0.9853822504501113
+                ],
+                [
+                    0.98560844408587334,
+                    0.98671468385324801
+                ],
+                [
+                    0.99163890011618605,
+                    0.9885340250750031
+                ],
+                [
+                    0.9873985183243611,
+                    0.9897548349351627
+                ],
+                [
+                    0.99354525254942161,
+                    0.991019358409853
+                ],
+                [
+                    0.99714959685686388,
+                    0.9918028278796136
+                ],
+                [
+                    0.99349883355564839,
+                    0.99234708423410289
+                ],
+                [
+                    0.99534107088595114,
+                    0.99283208267573408
+                ],
+                [
+                    0.99657585950164496,
+                    0.99327573290783377
+                ],
+                [
+                    0.99684693770012134,
+                    0.99363719963688713
+                ],
+                [
+                    0.99577086468993592,
+                    0.99386793812811758
+                ],
+                [
+                    0.99648689918755717,
+                    0.9938442871115728
+                ],
+                [
+                    0.99599476999270908,
+                    0.99439528168891211
+                ],
+                [
+                    0.99626435050251272,
+                    0.99438828081000141
+                ],
+                [
+                    0.99468183303442448,
+                    0.99420739095960631
+                ],
+                [
+                    0.99793084497498619,
+                    0.99457818352576954
+                ],
+                [
+                    0.99674500691939338,
+                    0.99450225852437735
+                ],
+                [
+                    0.99498517233924222,
+                    0.99460970863576847
+                ],
+                [
+                    0.99813589476216735,
+                    0.99472509779151164
+                ],
+                [
+                    0.99828486564245467,
+                    0.99455577046527088
+                ],
+                [
+                    0.99685811925315793,
+                    0.99495177870686646
+                ],
+                [
+                    0.99707764218539141,
+                    0.99445205329193964
+                ]
+            ],
+            "saved_files_config": {
+                "weights_file": "model_files/record_1_model_brodc_modelWeights.h5",
+                "yaml_file": "model_files/record_1_model_brodc_modelYaml.yaml",
+                "directory": "model_files",
+                "prefix": "model_brodc"
+            },
+            "model_creator_info": {
+                "inputs_config": [
+                    {
+                        "name": "sequence",
+                        "input_shape": [
+                            1,
+                            4,
+                            200
+                        ]
+                    }
+                ],
+                "nodes_config": [
+                    {
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "input_name": "sequence",
+                        "name": "conv1",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 4
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Activation",
+                        "input_name": "conv1",
+                        "name": "conv1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.convolutional.Convolution2D",
+                        "input_name": "conv1_act",
+                        "name": "conv2",
+                        "kwargs": {
+                            "nb_filter": 50,
+                            "nb_col": 11,
+                            "nb_row": 1
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Activation",
+                        "input_name": "conv2",
+                        "name": "conv2_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.convolutional.AveragePooling2D",
+                        "input_name": "conv2_act",
+                        "name": "avg_pool",
+                        "kwargs": {
+                            "strides": [
+                                1,
+                                1
+                            ],
+                            "pool_size": [
+                                1,
+                                180
+                            ]
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Flatten",
+                        "input_name": "avg_pool",
+                        "name": "flatten",
+                        "kwargs": {}
+                    },
+                    {
+                        "class": "keras.layers.core.Dense",
+                        "input_name": "flatten",
+                        "name": "dense1",
+                        "kwargs": {
+                            "output_dim": 50
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Activation",
+                        "input_name": "dense1",
+                        "name": "dense1_act",
+                        "kwargs": {
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Dropout",
+                        "input_name": "dense1_act",
+                        "name": "dense1_dropout",
+                        "kwargs": {
+                            "p": 0.5
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Dense",
+                        "input_name": "dense1_dropout",
+                        "name": "output_preact",
+                        "kwargs": {
+                            "output_dim": 3
+                        }
+                    },
+                    {
+                        "class": "keras.layers.core.Activation",
+                        "input_name": "output_preact",
+                        "name": "output_act",
+                        "kwargs": {
+                            "activation": "sigmoid"
+                        }
+                    }
+                ],
+                "outputs_config": [
+                    {
+                        "input": "output_act",
+                        "name": "output"
+                    }
+                ],
+                "optimizer_config": {
+                    "class": "keras.optimizers.Adam",
+                    "kwargs": {
+                        "lr": 0.001
+                    }
+                },
+                "loss_dictionary": {
+                    "output": {
+                        "autoload": true,
+                        "class": "keras.objectives.get_weighted_binary_crossentropy",
+                        "kwargs": {
+                            "w0_weights": [
+                                0.47,
+                                1.0,
+                                1.0
+                            ],
+                            "w1_weights": [
+                                10.0,
+                                10.0,
+                                10.0
+                            ]
+                        }
+                    }
+                }
+            },
+            "other_data_loaders_info": {
+                "train": {
+                    "batch_size": 300,
+                    "num_to_load_for_eval": 1000,
+                    "bundle_x_and_y_in_generator": true,
+                    "path_to_hdf5": "train_data.hdf5"
+                }
+            },
+            "model_trainer_info": {
+                "samples_per_epoch": 46000,
+                "stopping_criterion_config": {
+                    "class": "EarlyStopping",
+                    "kwargs": {
+                        "max_epochs": 500,
+                        "epochs_to_wait": 30
+                    }
+                },
+                "class_weight": null
+            },
+            "training_metadata": {
+                "termination_condition": "KeyboardInterrupt",
+                "total_epochs_trained_for": 34
+            }
+        }
+    ]
+}
