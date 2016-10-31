@@ -20,6 +20,7 @@ from avutils import file_processing as fp
 import identifyPeaks;   
 import deeplift
 import theano
+import theano.tensor.signal.conv
 
 core_importance_track='core_importance_track'
 
