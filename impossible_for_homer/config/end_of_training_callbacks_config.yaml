@@ -1,4 +1,0 @@
-[
-{"class":"WriteToDbCallback",
- "kwargs":{"db_path": "runs.db"}}
-]

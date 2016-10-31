@@ -1,6 +1,0 @@
-[
-    {"class": "SaveBestValidModel",
-     "kwargs": {"directory": "model_files"}},
-    {"class": "PrintPerfAfterEpoch",
-     "kwargs": {"print_trend": true}}
-]
